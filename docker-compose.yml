@@ -1,0 +1,26 @@
+services:
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    volumes:
+      - ./api:/app
+    ports:
+      - "8080:8080"
+    environment:
+      - ENV=development
+
+  shopify:
+    build:
+      context: ./shopify
+      dockerfile: Dockerfile
+    volumes:
+      - ./shopify:/app
+    ports:
+      - "8081:8081"
+    environment:
+      - ENV=development
+
+networks:
+  default:
+    name: shopify-services-network
